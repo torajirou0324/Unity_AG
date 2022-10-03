@@ -119,13 +119,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            rb.AddForce(new Vector3(0.0f,0.2f,0.0f), ForceMode.VelocityChange);
+            Debug.Log(2);
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(1);
-        if (collision.gameObject.name == "Enemy")
+        if(collision.gameObject.CompareTag("Ground"))
         {
-            rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
-            Debug.Log(2);
+            Debug.Log(1);
         }
     }
 }
