@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     // ジャンプ威力
     public float jumpPower = 3.0f;
 
+    // そこは無重力空間かどうか
+    private bool weightlessnessFlag = false;
+
     private Rigidbody rb;
     private Animator anim;                          // キャラにアタッチされるアニメーターへの参照
     private AnimatorStateInfo currentBaseState;         // base layerで使われる、アニメーターの現在の状態の参照
@@ -109,21 +112,24 @@ public class PlayerController : MonoBehaviour
             //アニメーションのステートがLocomotionの最中のみジャンプできる
             if (currentBaseState.nameHash == locoState)
             {
-                //ステート遷移中でなかったらジャンプできる
-                if (!anim.IsInTransition(0))
-                {
-                    rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
-                    anim.SetBool("Jump", true);     // Animatorにジャンプに切り替えるフラグを送る
-                }
+                rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
+                anim.SetBool("Jump", true);     // Animatorにジャンプに切り替えるフラグを送る
             }
         }
+        if(weightlessnessFlag == false)
+        {
+            rb.useGravity = true;
+        }
+        weightlessnessFlag = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            rb.AddForce(new Vector3(0.0f,0.2f,0.0f), ForceMode.VelocityChange);
+            //rb.isKinematic = true;
+            rb.useGravity = false;
+            weightlessnessFlag = true;
             Debug.Log(2);
         }
     }

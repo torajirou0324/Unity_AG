@@ -5,15 +5,15 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638001969278647901
-    m_Hash: 4007186375
+      ticks: 638005410901101704
+    m_Hash: 1857255145
   m_LockFileStatus:
     m_FilePath: C:/Users/student/Desktop/Unity_AG/BloodSeizure/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638001969302690875
+      ticks: 638005413415572717
     m_Hash: 38571225
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
